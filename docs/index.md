@@ -1,14 +1,14 @@
 # graphstream-fx
 
-GraphStream is a graph library totally written in Java. In this project, I will show how to use this library with a JavaFX UI. For that, we need the newest lib jars from the project which I linked below. Remember that these libraries are still in alpha state.
+GraphStream is a graph library totally written in Java. In this project, I will show you how to use this library with a JavaFX UI. For that, we need the newest lib jars from the project which I linked below. Remember that these libraries are still in alpha state.
 
 * [GraphStream](http://graphstream-project.org/)
 * [gs-core](https://github.com/graphstream/gs-core/releases)
 * [gs-ui-javafx](https://github.com/graphstream/gs-ui-javafx/releases)
 
-First, we need a normal JavaFX project if you have IntelliJ you can build this skeleton be clicking on the new project and then on JavaFX. This will generate a Main.java which is the starting point of the application, an XML layout and a controller. If you do not have IntelliJ you can just add all the files manually.
+First, we need a normal JavaFX project if you have IntelliJ you can build this skeleton be clicking on the new project and then on JavaFX. This will generate a Main.java the starting point of the application, an XML for layout and a controller. If you do not have IntelliJ you can just add all the files manually.
 
-Let's start with the sample.fxml this file defines the layout of our UI window. Nothing special here we just define a gridPane to put our graphstream graph inside. You can use any other layout.
+Let's start with the sample.fxml this file defines the layout of our UI window. Nothing special here we just define a GridPane to put our GraphStream graph inside. You can use any other layout.
 
 ```xml
 <?import javafx.geometry.Insets?>
@@ -17,7 +17,7 @@ Let's start with the sample.fxml this file defines the layout of our UI window. 
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 </GridPane>
 ```
-The Main.class is the entry point of the application. We load our fxml in it define the size and set the title.
+The Main.class is the entry point of the application. We load our fxml in it define its size and its title.
 
 ```java
 package sample;
@@ -45,9 +45,9 @@ public class Main extends Application {
 }
 ```
 
-The Controller.java is very empty we will fill this class later.
+The Controller.java is empty for now we will fill this class later.
 
-Now we need to import the two graphstream libraries. gs-core which is the core library and the gs-ui-javafx which provides a viewer for javafx. Download the jars and add the two libraries to your classpath by importing them. Now we need to inject the GridPane in our controller create a graph an add the graph to our GridPane.
+Now we need to import the two GraphStream libraries. gs-core which is the core library and the gs-ui-javafx which provides a viewer for JavaFX. Download the jars and add the two libraries to your classpath by importing them. Now we need to inject the GridPane into our controller create a graph an add the graph to our GridPane.
 
 We add this line to our Controller. This injects the GridPane in our Controller. Note the name of the GridPane object needs to be the same as the GridPane fx:id in the sample.fxml.
 ```java
@@ -72,7 +72,7 @@ Let's create a method to build our first GraphStream graph.
         return  (FxViewPanel) fxViewer.addDefaultView(false);
     }
 ```
-There are a lot of things to note here. First, we create a graph with a title. We need a viewer to display the graph here it is important that we choose the FxViewer because this viewer is to embed the graph in a JavaFX application like we have here. Additionally, we have to specify a ThreadingModel if you are planning on manipulating the graph during runtime you may choose to run the graph in a separate thread but for this tutorial it is fine. We need to enable the auto layout on the viewer or you specify the location of each node manually otherwise the nodes will all be in the same spot. Remember that those configurations had to be done before you add any nodes or edges. Now we can add as many nodes and edges as we like. The last statement is the most important here we get a FxViewPanel from our Viewer. We have to cast it to the FxViewPanel. Now we have a FxViewPanel which we can return, FxViewPanel extends the JavaFX pane and can, therefore, be integrated into any JavaFX component.
+There are a lot of things to note here. First, we create a graph with a title. We need a viewer to display the graph here it is important that we choose the FxViewer because this viewer is to embed the graph in a JavaFX application like we have here. Additionally, we have to specify a ThreadingModel if you are planning on manipulating the graph during runtime you may choose to run the graph in a separate thread but for this tutorial it is fine. We need to enable the auto layout on the viewer or you specify the location of each node manually otherwise the nodes will all be in the same spot. Remember that those configurations had to be done before you add any nodes or edges. Now we can add as many nodes and edges as we like. The last statement is the most important here we get a FxViewPanel from our Viewer. We have to cast it to a FxViewPanel first then we can return it. Note that FxViewPanel extends the JavaFX pane and can, therefore, be integrated into any JavaFX component.
 
 The final things to do now is to add our FxViewPanel to our GridPane. First, we implement the Initializable interface in our controller this will force a method called initialize which will be loaded as soon as our fxml is read. In this method, we assign the graph to our gridPane.
 ```java    
