@@ -74,3 +74,15 @@ Let's create a method to build our first GraphStream graph.
         return  (FxViewPanel) fxViewer.addDefaultView(false);
     }
 ```
+There are a lot of things to note here. First we create a graph with a title. We need a viewer to display the graph here it is important that we choose the FxViewer because this viewer is to embbed the graph in a javafx application like we have here. Additionaly we have to specify a ThreadingModel if you are planning on manipulating the graph during runntime you may choose to run the graph in a seperated thread but for this tutorial it is fine. We need to enable the auto layout on the viewer or you specify the location of each node manually otherwise the nodes will all be in the same spot. Remember that those configuration had to be done before you add any nodes or edges. Now we can add as many nodes and edges as we like. The last statement is the most important here we get a FxViewPanel from our Viewer. We have to cast it to the FxViewPanel. Now we have a FxViewPanel which we can return, FxViewPanel extends the javafx pane and can therefore be integrated in any javafx component.
+
+The final things to do now is to add our FxViewPanel to our GridPane. First we implement the Initializable interface in our controller this will force a method called initialize which will be loaded as soon as our fxml is read. In this method we assign the graph to our gridPane.
+```java    
+@Override
+    public void initialize(URL location, ResourceBundle resources) {
+        gridPane.getChildren().add(createGraph());
+    }
+```
+
+If you run the application you should now see your graph inside the javafx application.
+The whole code can be found in this project.
