@@ -56,3 +56,21 @@ We add this line to our Controller. This injects the GridPane in our Controller.
 @FXML
 GridPane gridPane;
 ```
+
+Let's create a method to build our first GraphStream graph.
+```java
+    private FxViewPanel createGraph(){
+        Graph graph = new SingleGraph("Tutorial 1");
+        FxViewer fxViewer = new FxViewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
+        fxViewer.enableAutoLayout();
+        graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("C");
+
+        graph.addEdge("AB", "A", "B");
+        graph.addEdge("AC", "A", "C");
+        graph.addEdge("BC", "B", "C");
+
+        return  (FxViewPanel) fxViewer.addDefaultView(false);
+    }
+```
