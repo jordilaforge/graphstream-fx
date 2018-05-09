@@ -12,7 +12,7 @@ First we need a normal javafx project if you have intellij you can build this sc
 
 Lets start with the sample.fxml this file defines the layout uf our ui window. Nothing special here we just define a gridPane to put our graphstream graph inside. You can use any other layout.
 
-```
+```xml
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
 <GridPane fx:id="gridPane" fx:controller="sample.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
