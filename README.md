@@ -46,3 +46,13 @@ public class Main extends Application {
     }
 }
 ```
+
+The Controller.java is very empty we will fill this class later.
+
+Now we need to import the two graphstream libraries. gs-core which is the core library and the gs-ui-javafx which provides a viewer for javafx. Download the jars and add the two libraries to your classpath by importing them. Now we need to inject the GridPane in our controller create a graph an add the graph to our GridPane.
+
+We add this line to our Controller. This injects the GridPane in our Controller. Note the the name of the GridPane object needs to be the same as the GridPane fx:id in the sample.fxml.
+```java
+@FXML
+GridPane gridPane;
+```
