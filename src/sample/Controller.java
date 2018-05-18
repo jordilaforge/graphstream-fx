@@ -24,10 +24,12 @@ public class Controller implements Initializable {
     }
 
 
-    private FxViewPanel createGraph(){
+    private FxViewPanel createGraph() {
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         Graph graph = new SingleGraph("Tutorial 1");
         FxViewer fxViewer = new FxViewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
         fxViewer.enableAutoLayout();
+        fxViewer.enableXYZfeedback(true);
         graph.addNode("A");
         graph.addNode("B");
         graph.addNode("C");
@@ -35,6 +37,9 @@ public class Controller implements Initializable {
         graph.addEdge("AB", "A", "B");
         graph.addEdge("AC", "A", "C");
         graph.addEdge("BC", "B", "C");
+
+        URL url = this.getClass().getResource("styles.css");
+        graph.setAttribute("ui.stylesheet", "url('" + url + "')");
 
         return  (FxViewPanel) fxViewer.addDefaultView(false);
     }

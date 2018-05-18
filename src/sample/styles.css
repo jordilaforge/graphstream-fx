@@ -1,0 +1,12 @@
+graph {
+    fill-color: beige;
+}
+
+node {
+    size: 50px, 50px;
+    shape: box;
+}
+
+edge {
+    size: 2px;
+}
